@@ -127,8 +127,6 @@
             const result = await signIn(email, password);
 
             if (result.success) {
-                alert('로그인 성공!');
-
                 // 이전 페이지로 돌아가거나 게시판으로 이동
                 const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'board.html';
                 sessionStorage.removeItem('redirectAfterLogin');

@@ -41,6 +41,7 @@ function displayPosts(posts) {
     tbody.innerHTML = currentPosts.map((post, index) => {
         const postNumber = posts.length - startIndex - index;
         const authorId = post.author_email ? post.author_email.split('@')[0] : '-';
+        const views = post.views || 0;
 
         return `
             <tr class="board-row">
@@ -50,7 +51,7 @@ function displayPosts(posts) {
                 </td>
                 <td class="col-email">${escapeHtml(authorId)}</td>
                 <td class="col-date">${formatDateShort(post.created_at)}</td>
-                <td class="col-views">0</td>
+                <td class="col-views">${views}</td>
             </tr>
         `;
     }).join('');

@@ -106,14 +106,11 @@ async function updateAuthUI() {
 
 // 로그아웃 처리
 async function handleLogout() {
-    if (confirm('로그아웃 하시겠습니까?')) {
-        const result = await signOut();
-        if (result.success) {
-            alert('로그아웃되었습니다.');
-            window.location.href = 'index.html';
-        } else {
-            alert('로그아웃 실패: ' + result.error);
-        }
+    const result = await signOut();
+    if (result.success) {
+        window.location.href = 'index.html';
+    } else {
+        alert('로그아웃 실패: ' + result.error);
     }
 }
 
