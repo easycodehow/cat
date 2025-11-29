@@ -5,29 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나이스 캣치 - 고양이 쇼핑몰</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/slider.js" defer></script>
+    <script src="js/category.js" defer></script>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-logo">Header-logo</div>
-            <nav class="header-nav">
-                <a href="#" class="nav-item">LOGO</a>
-                <a href="#" class="nav-item">tab</a>
-                <a href="#" class="nav-item">tab</a>
-                <a href="#" class="nav-item">tab</a>
-            </nav>
-            <div class="header-actions">
-                <a href="#" class="action-btn">login</a>
-                <a href="#" class="action-btn">join</a>
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <p>무료 배송 받는 가장 쉬운 방법!</p>
             </div>
         </div>
+
+        <!-- Main Header -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-logo">
+                    <a href="#">
+                        <img src="images/logo_ko.png" alt="나이스 캣치">
+                    </a>
+                </div>
+
+                <div class="header-search">
+                    <input type="text" placeholder="어떤 상품을 찾으세요?" class="search-input">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" title="검색">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn" title="찜하기">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn" title="장바구니">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="header-nav">
+            <div class="container">
+                <a href="#" class="nav-item">카테고리</a>
+                <a href="#" class="nav-item">동물</a>
+                <a href="#" class="nav-item">산업별</a>
+                <a href="#" class="nav-item">병원</a>
+                <a href="#" class="nav-item">이벤트</a>
+                <a href="board.html" class="nav-item">집사 커뮤니티</a>
+            </div>
+        </nav>
     </header>
 
     <!-- Main Slider -->
     <section class="main-slider">
-        <div class="slider-content">
-            <p>slider</p>
+        <div class="slider-wrapper">
+            <div class="slider-container" id="sliderContainer">
+                <div class="slide">
+                    <img src="images/main-slide-01.jpg" alt="메인 슬라이드 1">
+                </div>
+                <div class="slide">
+                    <img src="images/main-slide-02.jpg" alt="메인 슬라이드 2">
+                </div>
+                <div class="slide">
+                    <img src="images/main-slide-03.jpg" alt="메인 슬라이드 3">
+                </div>
+                <div class="slide">
+                    <img src="images/main-slide-04.jpg" alt="메인 슬라이드 4">
+                </div>
+                <div class="slide">
+                    <img src="images/main-slide-05.jpg" alt="메인 슬라이드 5">
+                </div>
+            </div>
+
+            <!-- Indicators -->
+            <div class="slider-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+                <span class="indicator" onclick="goToSlide(3)"></span>
+                <span class="indicator" onclick="goToSlide(4)"></span>
+            </div>
         </div>
     </section>
 
@@ -35,93 +112,377 @@
     <section class="category-section">
         <div class="container">
             <div class="category-tabs">
-                <button class="tab-btn">tab</button>
-                <button class="tab-btn">tab</button>
-                <button class="tab-btn">tab</button>
+                <button class="tab-btn active" onclick="showCategory('feed')">사료</button>
+                <button class="tab-btn" onclick="showCategory('snack')">간식</button>
+                <button class="tab-btn" onclick="showCategory('goods')">용품</button>
             </div>
-            <div class="category-grid">
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
-                <div class="category-item">sub-category</div>
+
+            <!-- 사료 카테고리 -->
+            <div class="category-grid" id="category-feed">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/01-kitten.png" alt="키튼">
+                    </div>
+                    <div class="category-name">키튼</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/02-adult.png" alt="어덜트">
+                    </div>
+                    <div class="category-name">어덜트</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/03-senior.png" alt="시니어">
+                    </div>
+                    <div class="category-name">시니어</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/04-all.png" alt="전연령">
+                    </div>
+                    <div class="category-name">전연령</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/05-dryfeed.png" alt="건사료">
+                    </div>
+                    <div class="category-name">건사료</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/06-canfeed.png" alt="주식캔">
+                    </div>
+                    <div class="category-name">주식캔</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/07-pouchfeed.png" alt="파우치">
+                    </div>
+                    <div class="category-name">파우치</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/08-airfeed.png" alt="영양제">
+                    </div>
+                    <div class="category-name">영양제</div>
+                </a>
+            </div>
+
+            <!-- 간식 카테고리 -->
+            <div class="category-grid" id="category-snack" style="display: none;">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/09-fouchsnack.png" alt="파우치간식">
+                    </div>
+                    <div class="category-name">파우치간식</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/10-cansnack.png" alt="캔간식">
+                    </div>
+                    <div class="category-name">캔간식</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/11-jerky.png" alt="져키">
+                    </div>
+                    <div class="category-name">져키</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/12-treet.png" alt="트릿">
+                    </div>
+                    <div class="category-name">트릿</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/13-sausage.png" alt="소시지">
+                    </div>
+                    <div class="category-name">소시지</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/14-grass.png" alt="캣그라스">
+                    </div>
+                    <div class="category-name">캣그라스</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/15-raw.png" alt="생식">
+                    </div>
+                    <div class="category-name">생식</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/16-dental.png" alt="덴탈케어">
+                    </div>
+                    <div class="category-name">덴탈케어</div>
+                </a>
+            </div>
+
+            <!-- 용품 카테고리 -->
+            <div class="category-grid" id="category-goods" style="display: none;">
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/17-toy.png" alt="장난감">
+                    </div>
+                    <div class="category-name">장난감</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/18-house.png" alt="하우스">
+                    </div>
+                    <div class="category-name">하우스</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/19-sand.png" alt="모래">
+                    </div>
+                    <div class="category-name">모래</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/20-bath.png" alt="목욕용품">
+                    </div>
+                    <div class="category-name">목욕용품</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/21-tower.png" alt="캣타워">
+                    </div>
+                    <div class="category-name">캣타워</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/22-waterer.png" alt="급수기">
+                    </div>
+                    <div class="category-name">급수기</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/23-clothes.png" alt="의류">
+                    </div>
+                    <div class="category-name">의류</div>
+                </a>
+                <a href="#" class="category-item">
+                    <div class="category-icon">
+                        <img src="images/24-bag.png" alt="가방">
+                    </div>
+                    <div class="category-name">가방</div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Card Wrap Section 1 -->
-    <section class="card-wrap">
+    <!-- Hot Deal Section -->
+    <section class="card-wrap hot-deal-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="sect-title">sect-title</h2>
-                <a href="#" class="more-btn">more</a>
+                <h2 class="sect-title">핫딜</h2>
+                <a href="#" class="more-btn">더보기</a>
             </div>
             <div class="card-slider">
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-01.jpg" alt="로얄캐닌 키튼 2kg">
+                        <span class="discount-badge">15%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">로얄캐닌 키튼 2kg, 4kg, 10kg</div>
+                        <div class="card-price">
+                            <span class="original-price">52,500원</span>
+                            <span class="sale-price">44,500원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-02.jpg" alt="츄르 간식">
+                        <span class="discount-badge">20%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">이나바 츄르 참치 14g x 4개입</div>
+                        <div class="card-price">
+                            <span class="original-price">5,000원</span>
+                            <span class="sale-price">4,000원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-03.jpg" alt="캣타워">
+                        <span class="discount-badge">25%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">캣타워 스카이 스크래쳐 138cm</div>
+                        <div class="card-price">
+                            <span class="original-price">89,000원</span>
+                            <span class="sale-price">66,750원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-04.jpg" alt="고양이 사료">
+                        <span class="discount-badge">10%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">오리젠 캣앤키튼 5.4kg</div>
+                        <div class="card-price">
+                            <span class="original-price">95,000원</span>
+                            <span class="sale-price">85,500원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-05.jpeg" alt="캣잎 모래">
+                        <span class="discount-badge">30%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">캣잎 두부 모래 6L x 6개</div>
+                        <div class="card-price">
+                            <span class="original-price">45,000원</span>
+                            <span class="sale-price">31,500원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-06.jpeg" alt="급수기">
+                        <span class="discount-badge">18%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">자동 급수기 2.5L 정수 필터</div>
+                        <div class="card-price">
+                            <span class="original-price">38,000원</span>
+                            <span class="sale-price">31,160원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-07.jpeg" alt="장난감">
+                        <span class="discount-badge">22%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">캣닢 인형 세트 10종</div>
+                        <div class="card-price">
+                            <span class="original-price">25,000원</span>
+                            <span class="sale-price">19,500원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/deal-08.jpeg" alt="고양이 간식">
+                        <span class="discount-badge">12%</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">그리니즈 덴탈 간식 85g</div>
+                        <div class="card-price">
+                            <span class="original-price">8,500원</span>
+                            <span class="sale-price">7,480원</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Card Wrap Section 2 -->
-    <section class="card-wrap">
+    <!-- New Products Section -->
+    <section class="card-wrap new-products-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="sect-title">sect-title</h2>
-                <a href="#" class="more-btn">more</a>
+                <h2 class="sect-title">신상품</h2>
+                <a href="#" class="more-btn">더보기</a>
             </div>
             <div class="card-slider">
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
-                <div class="card-item">
-                    <div class="card-img">card-img</div>
-                    <div class="card-title">card-title</div>
-                    <div class="card-txt">card-txt</div>
-                </div>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-01.png" alt="시저 습식캔">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">시저 클래식 시니어 캔 100g</div>
+                        <div class="card-price">
+                            <span class="sale-price">2,800원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-02.png" alt="고양이 모래">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">에버크린 언센티드 11.3kg</div>
+                        <div class="card-price">
+                            <span class="sale-price">34,900원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-03.jpg" alt="캣타워">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">프리미엄 원목 캣타워 160cm</div>
+                        <div class="card-price">
+                            <span class="sale-price">129,000원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-04.png" alt="고양이 사료">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">ANF 6Free 플러스 양고기 2kg</div>
+                        <div class="card-price">
+                            <span class="sale-price">28,500원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-05.jpeg" alt="스크래처">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">골판지 스크래처 소파형 L사이즈</div>
+                        <div class="card-price">
+                            <span class="sale-price">15,900원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-06.jpeg" alt="캣닢 장난감">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">실리콘 캣닢 볼 장난감 3개입</div>
+                        <div class="card-price">
+                            <span class="sale-price">12,000원</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="card-item">
+                    <div class="card-img">
+                        <img src="images/new-07.jpeg" alt="고양이 간식">
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">그린티즈 덴탈 치킨맛 60g</div>
+                        <div class="card-price">
+                            <span class="sale-price">6,500원</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -129,81 +490,111 @@
     <!-- Ranking Section -->
     <section class="ranking-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="rank-title">rank-title</h2>
-                <span class="rank-time">rank-time</span>
+            <div class="ranking-header">
+                <h2 class="rank-title">나캣랭킹</h2>
+                <span class="rank-time">2025년 01월 15일 기준</span>
             </div>
-            <div class="ranking-grid">
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
-                    <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+            <div class="ranking-list">
+                <a href="#" class="rank-item">
+                    <div class="rank-number">1</div>
+                    <div class="rank-img">
+                        <img src="images/rank-01.jpeg" alt="1위 상품">
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">템테이션 고양이 간식 치킨맛 60g</div>
+                        <div class="rank-price">4,500원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">2</div>
+                    <div class="rank-img">
+                        <img src="images/rank-02.png" alt="2위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">푸르밀나 샘 4종 간식 파우치</div>
+                        <div class="rank-price">19,900원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">3</div>
+                    <div class="rank-img">
+                        <img src="images/rank-03.png" alt="3위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">추루미 참치 연어맛 파우치 500g</div>
+                        <div class="rank-price">32,000원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">4</div>
+                    <div class="rank-img">
+                        <img src="images/rank-04.jpeg" alt="4위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">제로 디저트컵 참치&amp;크랩 65g x 6개</div>
+                        <div class="rank-price">9,900원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">5</div>
+                    <div class="rank-img">
+                        <img src="images/rank-05.jpeg" alt="5위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">페디그리 덴타스틱스 480g</div>
+                        <div class="rank-price">18,000원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">6</div>
+                    <div class="rank-img">
+                        <img src="images/rank-06.jpeg" alt="6위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">시저캔 시니어 7세이상 100g x 24개</div>
+                        <div class="rank-price">52,000원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">7</div>
+                    <div class="rank-img">
+                        <img src="images/rank-07.jpeg" alt="7위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">다복솔잎 모래화장실 앞 발판 1.8kg</div>
+                        <div class="rank-price">14,900원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">8</div>
+                    <div class="rank-img">
+                        <img src="images/rank-08.jpeg" alt="8위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">냥냥펀치 볼 장난감 10g</div>
+                        <div class="rank-price">1,200원</div>
                     </div>
-                </div>
-                <div class="rank-item">
-                    <div class="rank-img">rank-img</div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">9</div>
+                    <div class="rank-img">
+                        <img src="images/rank-09.jpeg" alt="9위 상품">
+                    </div>
                     <div class="rank-info">
-                        <div class="rank-txt">rank-txt</div>
-                        <div class="rank-txt">rank-txt</div>
+                        <div class="rank-product-name">로얄캐닌 인도어 2kg</div>
+                        <div class="rank-price">45,000원</div>
                     </div>
-                </div>
+                </a>
+                <a href="#" class="rank-item">
+                    <div class="rank-number">10</div>
+                    <div class="rank-img">
+                        <img src="images/rank-10.jpeg" alt="10위 상품">
+                    </div>
+                    <div class="rank-info">
+                        <div class="rank-product-name">캐츠랑 크림 파우치 4종</div>
+                        <div class="rank-price">8,500원</div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -212,26 +603,58 @@
     <section class="community-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="sect-title">sect-title</h2>
-                <a href="#" class="more-btn">more</a>
+                <h2 class="sect-title">전시 커뮤니티</h2>
+                <a href="#" class="more-btn">더보기</a>
             </div>
             <div class="community-grid">
-                <div class="comm-wrap">
-                    <div class="comm-img">comm-img</div>
-                    <div class="comm-title">comm-title</div>
-                </div>
-                <div class="comm-wrap">
-                    <div class="comm-img">comm-img</div>
-                    <div class="comm-title">comm-title</div>
-                </div>
-                <div class="comm-wrap">
-                    <div class="comm-img">comm-img</div>
-                    <div class="comm-title">comm-title</div>
-                </div>
-                <div class="comm-wrap">
-                    <div class="comm-img">comm-img</div>
-                    <div class="comm-title">comm-title</div>
-                </div>
+                <a href="#" class="comm-wrap">
+                    <div class="comm-img">
+                        <img src="images/comm-01.jpeg" alt="커뮤니티 게시글">
+                    </div>
+                    <div class="comm-info">
+                        <div class="comm-title">우리집 고양이 간식먹기 꿀팁</div>
+                        <div class="comm-meta">
+                            <span class="comm-author">집사님123</span>
+                            <span class="comm-date">2025.01.15</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="comm-wrap">
+                    <div class="comm-img">
+                        <img src="images/comm-02.jpeg" alt="커뮤니티 게시글">
+                    </div>
+                    <div class="comm-info">
+                        <div class="comm-title">털빠짐 해결하는 방법 공유</div>
+                        <div class="comm-meta">
+                            <span class="comm-author">냥집사</span>
+                            <span class="comm-date">2025.01.14</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="comm-wrap">
+                    <div class="comm-img">
+                        <img src="images/comm-03.jpeg" alt="커뮤니티 게시글">
+                    </div>
+                    <div class="comm-info">
+                        <div class="comm-title">고양이 기분좋을때 하는 행동</div>
+                        <div class="comm-meta">
+                            <span class="comm-author">고양이사랑</span>
+                            <span class="comm-date">2025.01.13</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="comm-wrap">
+                    <div class="comm-img">
+                        <img src="images/comm-04.jpeg" alt="커뮤니티 게시글">
+                    </div>
+                    <div class="comm-info">
+                        <div class="comm-title">고양이 기부 캠페인 후기</div>
+                        <div class="comm-meta">
+                            <span class="comm-author">봉사단</span>
+                            <span class="comm-date">2025.01.12</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -240,9 +663,24 @@
     <section class="banner-section">
         <div class="container">
             <div class="banner-grid">
-                <div class="banner-item">Banner × 3</div>
-                <div class="banner-item">Banner × 3</div>
-                <div class="banner-item">Banner × 3</div>
+                <a href="#" class="banner-item">
+                    <div class="banner-content">
+                        <h3>신규회원 가입</h3>
+                        <p>최대 50% 할인쿠폰</p>
+                    </div>
+                </a>
+                <a href="#" class="banner-item">
+                    <div class="banner-content">
+                        <h3>무료배송</h3>
+                        <p>3만원 이상 구매시</p>
+                    </div>
+                </a>
+                <a href="#" class="banner-item">
+                    <div class="banner-content">
+                        <h3>정기구독</h3>
+                        <p>매달 10% 추가할인</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -250,9 +688,23 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-logo">footer-logo</div>
-            <div class="footer-link">footer-link</div>
-            <div class="footer-link">footer-link</div>
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="images/logo_ko.png" alt="나이스 캣치">
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">회사소개</a>
+                    <a href="#" class="footer-link">이용약관</a>
+                    <a href="#" class="footer-link">개인정보처리방침</a>
+                    <a href="#" class="footer-link">고객센터</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>상호: 나이스 캣치 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123 나이스타워 10층</p>
+                <p>고객센터: 1588-1234 | 이메일: support@nicecat.com</p>
+                <p class="footer-copyright">Copyright © 2025 NICE CATCH. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

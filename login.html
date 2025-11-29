@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 나이스 캣치</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js" defer></script>
+    <script src="js/auth.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <p>무료 배송 받는 가장 쉬운 방법!</p>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="header-main">
+            <div class="container">
+                <div class="header-logo">
+                    <a href="index.html">
+                        <img src="images/logo_ko.png" alt="나이스 캣치">
+                    </a>
+                </div>
+
+                <div class="header-search">
+                    <input type="text" placeholder="어떤 상품을 찾으세요?" class="search-input">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" title="검색">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn" title="찜하기">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn" title="장바구니">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="header-nav">
+            <div class="container">
+                <a href="#" class="nav-item">카테고리</a>
+                <a href="#" class="nav-item">동물</a>
+                <a href="#" class="nav-item">산업별</a>
+                <a href="#" class="nav-item">병원</a>
+                <a href="#" class="nav-item">이벤트</a>
+                <a href="board.html" class="nav-item">집사 커뮤니티</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Form Section -->
+    <section class="auth-section">
+        <div class="auth-form-container">
+            <h1 class="auth-title">안녕하세요? 집사님들 🐱</h1>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder="이메일">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required placeholder="비밀번호">
+                </div>
+                <button type="submit" class="btn-submit">로그인</button>
+                <div class="auth-links">
+                    <p><a href="signup.html" class="signup-link">회원가입</a></p>
+                    <p class="view-concept">view concept for <a href="#">mobile</a> or for <a href="#">desktop</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="images/logo_ko.png" alt="나이스 캣치">
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">회사소개</a>
+                    <a href="#" class="footer-link">이용약관</a>
+                    <a href="#" class="footer-link">개인정보처리방침</a>
+                    <a href="#" class="footer-link">고객센터</a>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>상호: 나이스 캣치 | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123 나이스타워 10층</p>
+                <p>고객센터: 1588-1234 | 이메일: support@nicecat.com</p>
+                <p class="footer-copyright">Copyright © 2025 NICE CATCH. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = await signIn(email, password);
+
+            if (result.success) {
+                alert('로그인 성공!');
+
+                // 이전 페이지로 돌아가거나 게시판으로 이동
+                const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'board.html';
+                sessionStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirectUrl;
+            } else {
+                alert('로그인 실패: ' + result.error);
+            }
+        });
+    </script>
+</body>
+</html>
