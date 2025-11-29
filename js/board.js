@@ -62,7 +62,7 @@ function displayPosts(posts) {
 function updatePagination(totalPages) {
     const pageInfo = document.getElementById('pageInfo');
     if (pageInfo) {
-        pageInfo.textContent = `${currentPage} page / ${totalPages} pages`;
+        pageInfo.textContent = `${currentPage} / ${totalPages}`;
     }
 }
 
